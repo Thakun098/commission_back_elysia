@@ -6,10 +6,6 @@ import { commissionRoute } from "./routes/commission.route";
 const PORT = parseInt(process.env.PORT || "3000");
 const CORS_ORIGINS = process.env.CORS_ORIGINS?.split(",").map(o => o.trim()) || ["http://localhost:3000", "http://localhost:5000"];
 
-console.log("🔧 Environment:");
-console.log("  PORT:", PORT);
-console.log("  CORS_ORIGINS:", CORS_ORIGINS);
-
 const app = new Elysia()
   .get("/", () => ({ status: "ok", message: "Commission Calculator API is running!" }))
   .use(cors({
@@ -19,6 +15,9 @@ const app = new Elysia()
     credentials: true
   }))
   .use(commissionRoute)
-  .listen(PORT);
+  .listen({
+    port: PORT,
+    hostname: "0.0.0.0"
+  });
 
 console.log(`🦊 Elysia is running at http://0.0.0.0:${PORT}`);
