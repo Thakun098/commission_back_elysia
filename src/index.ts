@@ -15,6 +15,7 @@ const app = new Elysia()
       credentials: true,
     })
   )
+  .options("*", () => new Response(null, { status: 204 }))
   .get("/", () => ({
     status: "ok",
     message: "Commission Calculator API is running!",
@@ -25,6 +26,5 @@ const app = new Elysia()
     hostname: "0.0.0.0",
   });
 
-  app.options("*", () => "OK");
 
 console.log(`🦊 Elysia is running at http://0.0.0.0:${PORT}`);
