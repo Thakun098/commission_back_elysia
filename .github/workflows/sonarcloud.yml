@@ -29,7 +29,12 @@ jobs:
         run: bun run lint || true # Continue even if lint fails
 
       - name: SonarCloud Scan
-        uses: SonarSource/sonarcloud-github-action@master
+        uses: SonarSource/sonarqube-scan-action@v5
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+        with:
+          args: >
+            -Dsonar.organization=thakun098
+            -Dsonar.projectKey=Thakun098_commission_back_elysia
+            -Dsonar.host.url=https://sonarcloud.io
