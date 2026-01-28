@@ -1,20 +1,8 @@
 import { validateAllInputs } from "../lib/validation";
 import type { CalculateResponse } from "../lib/types";
-
-/**
- * Calculate sales based on items sold
- * Formula: $45 * locks + $30 * stocks + $25 * barrels
- */
 const calculateSales = (locks: number, stocks: number, barrels: number): number => {
   return 45 * locks + 30 * stocks + 25 * barrels;
 };
-
-/**
- * Calculate commission with tiered rates:
- * - 10% on first $1,000
- * - 15% on next $800 ($1,001 to $1,800)
- * - 20% on everything above $1,800
- */
 const calculateCommissionAmount = (sales: number): number => {
   let commission = 0;
   
@@ -28,7 +16,6 @@ const calculateCommissionAmount = (sales: number): number => {
   
   return commission;
 };
-
 export const commissionCalculation = {
   calculateCommission: (
     name: string,
@@ -36,7 +23,6 @@ export const commissionCalculation = {
     stocks: number,
     barrels: number
   ): CalculateResponse => {
-    // Validate inputs
     const validation = validateAllInputs(name, locks, stocks, barrels);
     
     if (!validation.isValid) {
@@ -45,8 +31,6 @@ export const commissionCalculation = {
         errors: validation.errors
       };
     }
-
-    // Calculate sales and commission
     const sales = calculateSales(locks, stocks, barrels);
     const commission = calculateCommissionAmount(sales);
 

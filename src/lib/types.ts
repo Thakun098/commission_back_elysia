@@ -1,12 +1,9 @@
-// Type definitions for Commission Calculator API
-
 export interface CalculateRequest {
   name: string;
   locks: number;
   stocks: number;
   barrels: number;
 }
-
 export interface CalculateResponse {
   success: boolean;
   data?: {

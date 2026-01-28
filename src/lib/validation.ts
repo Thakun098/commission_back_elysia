@@ -1,18 +1,9 @@
-// Validation functions for Commission Calculator (Backend)
-
-/**
- * Check if a string is a valid integer
- */
 export const isInteger = (value: string | number): boolean => {
   if (typeof value === "number") {
     return Number.isInteger(value);
   }
   return /^-?\d+$/.test(String(value).trim());
 };
-
-/**
- * Validate name field - must be non-empty and English letters only
- */
 export const validateName = (name: string): string => {
   const englishOnlyRegex = /^[a-zA-Z\s]+$/;
 
@@ -24,10 +15,6 @@ export const validateName = (name: string): string => {
   }
   return "";
 };
-
-/**
- * Validate a numeric field - checks for proper number format
- */
 export const validateNumericField = (
   value: number | string,
   fieldName: string
@@ -40,13 +27,6 @@ export const validateNumericField = (
   }
   return "";
 };
-
-/**
- * Validate input ranges for locks, stocks, and barrels
- * - Locks: 1-70
- * - Stocks: 1-80
- * - Barrels: 1-90
- */
 export const validateInputRanges = (
   locks: number,
   stocks: number,
@@ -71,10 +51,6 @@ export interface ValidationResult {
   isValid: boolean;
   errors: string[];
 }
-
-/**
- * Validate all input fields at once
- */
 export const validateAllInputs = (
   name: string,
   locks: number,
