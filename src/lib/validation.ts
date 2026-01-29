@@ -5,19 +5,20 @@ export const isInteger = (value: string | number): boolean => {
   return /^-?\d+$/.test(String(value).trim());
 };
 export const validateName = (name: string): string => {
-  const englishOnlyRegex = /^[a-zA-Z\s]+$/;
+  // Thai: \u0E00-\u0E7F, English: a-zA-Z, and spaces
+  const thaiOrEnglishRegex = /^[a-zA-Z\u0E00-\u0E7F\s]+$/;
 
   if (!name || name.trim() === "") {
     return "Please enter Employee Name";
   }
-  if (!englishOnlyRegex.test(name)) {
-    return "Name is not valid, please enter in english.";
+  if (!thaiOrEnglishRegex.test(name)) {
+    return "Name must be Thai or English letters only";
   }
   return "";
 };
 export const validateNumericField = (
   value: number | string,
-  fieldName: string
+  fieldName: string,
 ): string => {
   if (value === undefined || value === null || value === "") {
     return `Please enter ${fieldName}`;
@@ -30,7 +31,7 @@ export const validateNumericField = (
 export const validateInputRanges = (
   locks: number,
   stocks: number,
-  barrels: number
+  barrels: number,
 ): string[] => {
   const errors: string[] = [];
 
@@ -55,7 +56,7 @@ export const validateAllInputs = (
   name: string,
   locks: number,
   stocks: number,
-  barrels: number
+  barrels: number,
 ): ValidationResult => {
   const errors: string[] = [];
 
